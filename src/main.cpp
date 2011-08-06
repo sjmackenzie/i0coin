@@ -3092,7 +3092,6 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
             return error("I0coinMiner : ProcessBlock, block not accepted");
     }
 
-    Sleep(2000);
     return true;
 }
 
