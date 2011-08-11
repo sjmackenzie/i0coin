@@ -23,14 +23,14 @@ set<CWallet*> setpwalletRegistered;
 
 CCriticalSection cs_main;
 
-map<uint256, CTransaction> mapTransactions;
+static map<uint256, CTransaction> mapTransactions;
 CCriticalSection cs_mapTransactions;
 unsigned int nTransactionsUpdated = 0;
 map<COutPoint, CInPoint> mapNextTx;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
 uint256 hashGenesisBlock("0x00000000de13b7f748fb214e3f9c284fe6a57e1559fee545bfe473f72599c0d1");
-CBigNum bnProofOfWorkLimit(~uint256(0) >> 32);
+static CBigNum bnProofOfWorkLimit(~uint256(0) >> 32);
 const int nTotalBlocksEstimate = 131130; // Conservative estimate of total nr of blocks on main chain
 const int nInitialBlockThreshold = 120; // Regard blocks up until N-threshold as "initial download"
 CBlockIndex* pindexGenesisBlock = NULL;

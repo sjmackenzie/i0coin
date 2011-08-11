@@ -56,7 +56,6 @@ static const int fHaveUPnP = false;
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;
 extern uint256 hashGenesisBlock;
-extern CBigNum bnProofOfWorkLimit;
 extern CBlockIndex* pindexGenesisBlock;
 extern int nBestHeight;
 extern CBigNum bnBestChainWork;
@@ -1579,17 +1578,5 @@ public:
 
     bool ProcessAlert();
 };
-
-
-
-
-
-
-
-
-
-
-
-extern std::map<uint256, CTransaction> mapTransactions;
 
 #endif
