@@ -3482,7 +3482,7 @@
                                 <property name="font"></property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
-                                <property name="label">Enter a I0coin address (e.g. jNS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</property>
+                                <property name="label">Enter a I0coin address (e.g. jGsvXdgohRJbXRmHtNygS21CtvAXK91wtk)</property>
                                 <property name="maximum_size"></property>
                                 <property name="minimum_size"></property>
                                 <property name="name">m_staticTextInstructions</property>
