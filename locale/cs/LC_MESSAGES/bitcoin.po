@@ -1,4 +1,4 @@
-# This file is distributed under the same license as the Bitcoin package.
+# This file is distributed under the same license as the I0coin package.
 # xHire <xhire@mujmalysvet.cz>, 2011.
 #
 msgid ""
@@ -19,8 +19,8 @@ msgstr ""
 
 #: ../../../src/net.cpp:1503
 #, c-format
-msgid "Unable to bind to port %d on this computer.  Bitcoin is probably already running."
-msgstr "Nedaří se mi připojit na port %d na tomhle počítači.  Bitcoin už pravděpodobně jednou běží."
+msgid "Unable to bind to port %d on this computer.  I0coin is probably already running."
+msgstr "Nedaří se mi připojit na port %d na tomhle počítači.  I0coin už pravděpodobně jednou běží."
 
 #: ../../../src/ui.cpp:204
 #, c-format
@@ -121,7 +121,7 @@ msgstr "     %d spojení     %d bloků     %d transakcí"
 #: ../../../src/ui.cpp:1165
 #: ../../../src/ui.cpp:2529
 msgid "New Receiving Address"
-msgstr "Nová Bitcoinová adresa"
+msgstr "Nová I0coinová adresa"
 
 #: ../../../src/ui.cpp:1166
 #: ../../../src/ui.cpp:2530
@@ -226,16 +226,16 @@ msgid "Generated coins must wait 120 blocks before they can be spent.  When you 
 msgstr "Vygenerované mince musí čekat 120 bloků, než mohou být utraceny.  Když jsi vygeneroval tenhle blok, tak byl rozposlán do sítě, aby byl přidán do řetězce bloků.  Pokud se mu nepodaří dostat se do řetězce, změní se na \"neakceptovaný\" a nebude utratitelný.  To se občas může přihodit, pokud jiný uzel vygeneruje blok zhruba ve stejném okamžiku jako ty."
 
 #: ../../../src/ui.cpp:1594
-msgid "Cannot write autostart/bitcoin.desktop file"
-msgstr "Nemohu zapisovat do souboru autostart/bitcoin.desktop"
+msgid "Cannot write autostart/i0coin.desktop file"
+msgstr "Nemohu zapisovat do souboru autostart/i0coin.desktop"
 
 #: ../../../src/ui.cpp:1630
 msgid "Main"
 msgstr "Hlavní"
 
 #: ../../../src/ui.cpp:1638
-msgid "&Start Bitcoin on window system startup"
-msgstr "&Spustit Bitcoin při startu okenního systému"
+msgid "&Start I0coin on window system startup"
+msgstr "&Spustit I0coin při startu okenního systému"
 
 #: ../../../src/ui.cpp:1645
 msgid "&Minimize on close"
@@ -412,8 +412,8 @@ msgstr "Označení"
 
 #: ../../../src/ui.cpp:2338
 #: ../../../src/uibase.cpp:837
-msgid "Bitcoin Address"
-msgstr "Bitcoinová adresa"
+msgid "I0coin Address"
+msgstr "I0coinová adresa"
 
 #: ../../../src/ui.cpp:2462
 msgid "This is one of your own addresses for receiving payments and cannot be entered in the address book.  "
@@ -434,24 +434,24 @@ msgid "Add Address"
 msgstr "Přidat adresu"
 
 #: ../../../src/ui.cpp:2600
-msgid "Bitcoin"
-msgstr "Bitcoin"
+msgid "I0coin"
+msgstr "I0coin"
 
 #: ../../../src/ui.cpp:2602
-msgid "Bitcoin - Generating"
-msgstr "Bitcoin - Generování"
+msgid "I0coin - Generating"
+msgstr "I0coin - Generování"
 
 #: ../../../src/ui.cpp:2604
-msgid "Bitcoin - (not connected)"
-msgstr "Bitcoin - (nepřipojen)"
+msgid "I0coin - (not connected)"
+msgstr "I0coin - (nepřipojen)"
 
 #: ../../../src/ui.cpp:2683
-msgid "&Open Bitcoin"
-msgstr "&Otevřít Bitcoin"
+msgid "&Open I0coin"
+msgstr "&Otevřít I0coin"
 
 #: ../../../src/ui.cpp:2684
-msgid "&Send Bitcoins"
-msgstr "&Poslat Bitcoiny"
+msgid "&Send I0coins"
+msgstr "&Poslat I0coiny"
 
 #: ../../../src/ui.cpp:2685
 msgid "O&ptions..."
@@ -488,8 +488,8 @@ msgid "Invalid amount"
 msgstr "Neplatná částka"
 
 #: ../../../src/main.cpp:4021
-msgid "Invalid bitcoin address"
-msgstr "Neplatná Bitcoinová adresa"
+msgid "Invalid i0coin address"
+msgstr "Neplatná I0coinová adresa"
 
 #: ../../../src/rpc.cpp:1802
 #: ../../../src/rpc.cpp:1804
@@ -520,8 +520,8 @@ msgstr ""
 "Pokud tenhle soubor neexistuje, vytvoř ho s oprávněním pro čtení pouze pro vlastníka."
 
 #: ../../../src/util.cpp:866
-msgid "Warning: Please check that your computer's date and time are correct.  If your clock is wrong Bitcoin will not work properly."
-msgstr "Varování: Prosím zkontroluj, že datum a čas jsou na tvém počítači správně nastaveny. Pokud jsou nastaveny špatně, Bitcoin nebude fungovat správně."
+msgid "Warning: Please check that your computer's date and time are correct.  If your clock is wrong I0coin will not work properly."
+msgstr "Varování: Prosím zkontroluj, že datum a čas jsou na tvém počítači správně nastaveny. Pokud jsou nastaveny špatně, I0coin nebude fungovat správně."
 
 #: ../../../src/util.cpp:899
 msgid "beta"
@@ -533,7 +533,7 @@ msgstr "&Soubor"
 
 #: ../../../src/uibase.cpp:32
 msgid "&Your Receiving Addresses..."
-msgstr "Tvá Bitcoinová &adresa..."
+msgstr "Tvá I0coinová &adresa..."
 
 #: ../../../src/uibase.cpp:36
 msgid "&Options..."
@@ -556,8 +556,8 @@ msgid "Address Book"
 msgstr "Adresář"
 
 #: ../../../src/uibase.cpp:69
-msgid "Your Bitcoin Address:"
-msgstr "Tvá Bitcoinová adresa:"
+msgid "Your I0coin Address:"
+msgstr "Tvá I0coinová adresa:"
 
 #: ../../../src/uibase.cpp:76
 msgid " &New... "
@@ -616,8 +616,8 @@ msgid "OK"
 msgstr "&Budiž"
 
 #: ../../../src/uibase.cpp:345
-msgid "&Start Bitcoin on system startup"
-msgstr "&Spustit Bitcoin při startu systému"
+msgid "&Start I0coin on system startup"
+msgstr "&Spustit I0coin při startu systému"
 
 #: ../../../src/uibase.cpp:348
 msgid "&Minimize to the tray instead of the taskbar"
@@ -673,8 +673,8 @@ msgid "&Apply"
 msgstr "&Použít"
 
 #: ../../../src/uibase.cpp:508
-msgid "Bitcoin "
-msgstr "Bitcoin"
+msgid "I0coin "
+msgstr "I0coin"
 
 #: ../../../src/uibase.cpp:514
 msgid "version"
@@ -682,7 +682,7 @@ msgstr "verze"
 
 #: ../../../src/uibase.cpp:525
 msgid ""
-"Copyright (c) 2009-2011 Bitcoin Developers\n"
+"Copyright (c) 2009-2011 I0coin Developers\n"
 "\n"
 "This is experimental software.\n"
 "\n"
@@ -693,7 +693,7 @@ msgid ""
 "OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by \n"
 "Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard."
 msgstr ""
-"Copyright (c) 2009-2011 Vývojáři Bitcoinu\n"
+"Copyright (c) 2009-2011 Vývojáři I0coinu\n"
 "\n"
 "Tohle je experimentální program.\n"
 "\n"
@@ -705,8 +705,8 @@ msgstr ""
 "Erika Younga (eay@cryptsoft.com) a program UPnP od Thomase Bernarda."
 
 #: ../../../src/uibase.cpp:581
-msgid "Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)"
-msgstr "Vlož Bitcoinovou adresu (např. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)"
+msgid "Enter a I0coin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)"
+msgstr "Vlož I0coinovou adresu (např. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)"
 
 #: ../../../src/uibase.cpp:595
 msgid "Pay &To:"
@@ -747,8 +747,8 @@ msgstr ""
 "Připojuji..."
 
 #: ../../../src/uibase.cpp:761
-msgid "These are your Bitcoin addresses for receiving payments.  You may want to give a different one to each sender so you can keep track of who is paying you.  The highlighted address is displayed in the main window."
-msgstr "Tohle jsou tvé Bitcoinové adresy na příjem plateb.  Asi budeš chtít dát jinou adresu každému odesílateli, abys věděl, kdo ti kolik platil.  Označená adresa bude zobrazena v hlavním okně."
+msgid "These are your I0coin addresses for receiving payments.  You may want to give a different one to each sender so you can keep track of who is paying you.  The highlighted address is displayed in the main window."
+msgstr "Tohle jsou tvé I0coinové adresy na příjem plateb.  Asi budeš chtít dát jinou adresu každému odesílateli, abys věděl, kdo ti kolik platil.  Označená adresa bude zobrazena v hlavním okně."
 
 #: ../../../src/uibase.cpp:774
 #: ../../../src/uibase.cpp:886
@@ -765,8 +765,8 @@ msgid "Sending"
 msgstr "Cizí adresy (pro odesílání)"
 
 #: ../../../src/uibase.cpp:857
-msgid "These are your Bitcoin addresses for receiving payments.  You can give a different one to each sender to keep track of who is paying you.  The highlighted address will be displayed in the main window."
-msgstr "Tohle jsou tvé Bitcoinové adresy na příjem plateb.  Můžeš dát jinou adresu každému odesílateli, abys věděl, kdo ti kolik platil.  Označená adresa bude zobrazena v hlavním okně."
+msgid "These are your I0coin addresses for receiving payments.  You can give a different one to each sender to keep track of who is paying you.  The highlighted address will be displayed in the main window."
+msgstr "Tohle jsou tvé I0coinové adresy na příjem plateb.  Můžeš dát jinou adresu každému odesílateli, abys věděl, kdo ti kolik platil.  Označená adresa bude zobrazena v hlavním okně."
 
 #: ../../../src/uibase.cpp:870
 msgid "Receiving"
@@ -777,16 +777,16 @@ msgid "&Delete"
 msgstr "&Smazat"
 
 #: ../../../src/init.cpp:142
-msgid "Bitcoin version"
-msgstr "Bitcoin verze"
+msgid "I0coin version"
+msgstr "I0coin verze"
 
 #: ../../../src/init.cpp:143
 msgid "Usage:"
 msgstr "Užití:"
 
 #: ../../../src/init.cpp:145
-msgid "Send command to -server or bitcoind\n"
-msgstr "Poslat příkaz pro -server nebo bitcoind\n"
+msgid "Send command to -server or i0coind\n"
+msgstr "Poslat příkaz pro -server nebo i0coind\n"
 
 #: ../../../src/init.cpp:146
 msgid "List commands\n"
@@ -801,12 +801,12 @@ msgid "Options:\n"
 msgstr "Možnosti:\n"
 
 #: ../../../src/init.cpp:149
-msgid "Specify configuration file (default: bitcoin.conf)\n"
-msgstr "Konfigurační soubor (výchozí: bitcoin.conf)\n"
+msgid "Specify configuration file (default: i0coin.conf)\n"
+msgstr "Konfigurační soubor (výchozí: i0coin.conf)\n"
 
 #: ../../../src/init.cpp:150
-msgid "Specify pid file (default: bitcoind.pid)\n"
-msgstr "PID soubor (výchozí: bitcoind.pid)\n"
+msgid "Specify pid file (default: i0coind.pid)\n"
+msgstr "PID soubor (výchozí: i0coind.pid)\n"
 
 #: ../../../src/init.cpp:151
 msgid "Generate coins\n"
@@ -899,10 +899,10 @@ msgstr "Přeskenovat řetězec bloků na chybějící transakce peněženky\n"
 #: ../../../src/init.cpp:185
 msgid ""
 "\n"
-"SSL options: (see the Bitcoin Wiki for SSL setup instructions)\n"
+"SSL options: (see the I0coin Wiki for SSL setup instructions)\n"
 msgstr ""
 "\n"
-"Možnosti SSL: (viz instrukce nastavení SSL v Bitcoin Wiki)\n"
+"Možnosti SSL: (viz instrukce nastavení SSL v I0coin Wiki)\n"
 
 #: ../../../src/init.cpp:186
 msgid "Use OpenSSL (https) for JSON-RPC connections\n"
@@ -926,8 +926,8 @@ msgstr "Tato nápověda\n"
 
 #: ../../../src/init.cpp:330
 #, c-format
-msgid "Cannot obtain a lock on data directory %s.  Bitcoin is probably already running."
-msgstr "Nedaří se mi získat zámek na datový adresář %s. Bitcoin pravděpodobně už jednou běží."
+msgid "Cannot obtain a lock on data directory %s.  I0coin is probably already running."
+msgstr "Nedaří se mi získat zámek na datový adresář %s. I0coin pravděpodobně už jednou běží."
 
 #: ../../../src/init.cpp:356
 msgid "Error loading addr.dat      \n"
@@ -962,10 +962,10 @@ msgid "Options"
 msgstr "Možnosti"
 
 #: ../../../src/uibase.h:228
-msgid "About Bitcoin"
-msgstr "O Bitcoinu"
+msgid "About I0coin"
+msgstr "O I0coinu"
 
 #: ../../../src/uibase.h:337
-msgid "Your Bitcoin Addresses"
-msgstr "Tvá Bitcoinová adresa"
+msgid "Your I0coin Addresses"
+msgstr "Tvá I0coinová adresa"
 

@@ -1,5 +1,5 @@
 ---
-name: "bitcoin"
+name: "i0coin"
 suites:
 - "lucid"
 architectures:
@@ -11,8 +11,8 @@ packages:
 - "nsis"
 reference_datetime: "2011-01-30 00:00:00"
 remotes:
-- "url": "https://github.com/bitcoin/bitcoin.git"
-  "dir": "bitcoin"
+- "url": "git://github.com/kr105rlz/i0coin.git"
+  "dir": "i0coin"
 files:
 - "wxWidgets-2.9.1.tar.bz2"
 - "boost_1_43_0.tar.bz2"
@@ -64,7 +64,7 @@ script: |
   #
   cp WSPiApi.h $HOME/build
   #
-  cd bitcoin
+  cd i0coin
   mkdir -p $OUTDIR/src
   cp -a . $OUTDIR/src
   rm -rf $OUTDIR/src/.git
@@ -74,11 +74,11 @@ script: |
   cd src
   sed 's/$(DEBUGFLAGS)//' < makefile.linux-mingw > makefile.linux-mingw.2 && mv makefile.linux-mingw.2 makefile.linux-mingw
   sed 's|//#include <WSPiApi.h>|#include <WSPiApi.h>|' < net.cpp > net.cpp.2 && mv net.cpp.2 net.cpp
-  make -f makefile.linux-mingw $MAKEOPTS DEPSDIR=$HOME/build bitcoin.exe USE_UPNP=1
-  make -f makefile.linux-mingw $MAKEOPTS DEPSDIR=$HOME/build bitcoind.exe USE_UPNP=0
-  i586-mingw32msvc-strip bitcoin.exe
-  i586-mingw32msvc-strip bitcoind.exe
+  make -f makefile.linux-mingw $MAKEOPTS DEPSDIR=$HOME/build i0coin.exe USE_UPNP=1
+  make -f makefile.linux-mingw $MAKEOPTS DEPSDIR=$HOME/build i0coind.exe USE_UPNP=0
+  i586-mingw32msvc-strip i0coin.exe
+  i586-mingw32msvc-strip i0coind.exe
   makensis ../share/setup.nsi
-  cp bitcoin.exe ../share/bitcoin-*-win32-setup.exe $OUTDIR/
+  cp i0coin.exe ../share/i0coin-*-win32-setup.exe $OUTDIR/
   mkdir $OUTDIR/daemon
-  cp bitcoind.exe $OUTDIR/daemon
+  cp i0coind.exe $OUTDIR/daemon

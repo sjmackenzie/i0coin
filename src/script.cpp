@@ -973,7 +973,7 @@ bool Solver(const CScript& scriptPubKey, vector<pair<opcodetype, valtype> >& vSo
         // Standard tx, sender provides pubkey, receiver adds signature
         vTemplates.push_back(CScript() << OP_PUBKEY << OP_CHECKSIG);
 
-        // Bitcoin address tx, sender provides hash of pubkey, receiver provides signature and pubkey
+        // I0coin address tx, sender provides hash of pubkey, receiver provides signature and pubkey
         vTemplates.push_back(CScript() << OP_DUP << OP_HASH160 << OP_PUBKEYHASH << OP_EQUALVERIFY << OP_CHECKSIG);
     }
 

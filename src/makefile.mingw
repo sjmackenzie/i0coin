@@ -61,7 +61,7 @@ OBJS= \
     cryptopp/obj/cpu.o
 
 
-all: bitcoin.exe
+all: i0coin.exe
 
 
 obj/%.o: %.cpp $(HEADERS)
@@ -73,24 +73,24 @@ cryptopp/obj/%.o: cryptopp/%.cpp
 obj/ui_res.o: ../share/ui.rc  ../share/pixmaps/bitcoin.ico ../share/pixmaps/check.ico ../share/pixmaps/send16.bmp ../share/pixmaps/send16mask.bmp ../share/pixmaps/send16masknoshadow.bmp ../share/pixmaps/send20.bmp ../share/pixmaps/send20mask.bmp ../share/pixmaps/addressbook16.bmp ../share/pixmaps/addressbook16mask.bmp ../share/pixmaps/addressbook20.bmp ../share/pixmaps/addressbook20mask.bmp
 	windres $(DEFS) $(INCLUDEPATHS) -o $@ -i $<
 
-bitcoin.exe: $(OBJS) obj/ui.o obj/uibase.o obj/ui_res.o
+i0coin.exe: $(OBJS) obj/ui.o obj/uibase.o obj/ui_res.o
 	g++ $(CFLAGS) -mwindows -Wl,--subsystem,windows -o $@ $(LIBPATHS) $^ $(WXLIBS) $(LIBS)
 
 
 obj/nogui/%.o: %.cpp $(HEADERS)
 	g++ -c $(CFLAGS) -o $@ $<
 
-bitcoind.exe: $(OBJS:obj/%=obj/nogui/%) obj/ui_res.o
+i0coind.exe: $(OBJS:obj/%=obj/nogui/%) obj/ui_res.o
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
 
 obj/test/%.o: obj/test/%.cpp $(HEADERS)
 	g++ -c $(CFLAGS) -o $@ $<
 
-test_bitcoin.exe: obj/test/test_bitcoin.o $(filter-out obj/nogui/init.o,$(OBJS:obj/%=obj/nogui/%))
+test_i0coin.exe: obj/test/test_i0coin.o $(filter-out obj/nogui/init.o,$(OBJS:obj/%=obj/nogui/%))
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
 
 clean:
-	-del /Q bitcoin bitcoind test_bitcoin
+	-del /Q i0coin i0coind test_i0coin
 	-del /Q obj\*
 	-del /Q obj\nogui\*
 	-del /Q obj\test\*

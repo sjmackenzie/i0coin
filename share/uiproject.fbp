@@ -36,7 +36,7 @@
             <property name="size">723,484</property>
             <property name="style">wxDEFAULT_FRAME_STYLE|wxRESIZE_BORDER</property>
             <property name="subclass"></property>
-            <property name="title">Bitcoin</property>
+            <property name="title">I0coin</property>
             <property name="tooltip"></property>
             <property name="validator_data_type"></property>
             <property name="validator_style">wxFILTER_NONE</property>
@@ -394,7 +394,7 @@
                                 <property name="font"></property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
-                                <property name="label">Your Bitcoin Address:</property>
+                                <property name="label">Your I0coin Address:</property>
                                 <property name="maximum_size"></property>
                                 <property name="minimum_size"></property>
                                 <property name="name">m_staticText32</property>
@@ -1857,7 +1857,7 @@
                                                         <property name="font"></property>
                                                         <property name="hidden">0</property>
                                                         <property name="id">wxID_ANY</property>
-                                                        <property name="label">&amp;Start Bitcoin on system startup</property>
+                                                        <property name="label">&amp;Start I0coin on system startup</property>
                                                         <property name="maximum_size"></property>
                                                         <property name="minimum_size"></property>
                                                         <property name="name">m_checkBoxStartOnSystemStartup</property>
@@ -2958,7 +2958,7 @@
             <property name="size">532,333</property>
             <property name="style">wxDEFAULT_DIALOG_STYLE</property>
             <property name="subclass"></property>
-            <property name="title">About Bitcoin</property>
+            <property name="title">About I0coin</property>
             <property name="tooltip"></property>
             <property name="validator_data_type"></property>
             <property name="validator_style">wxFILTER_NONE</property>
@@ -3113,7 +3113,7 @@
                                                         <property name="font">Tahoma,90,92,10,74,0</property>
                                                         <property name="hidden">0</property>
                                                         <property name="id">wxID_ANY</property>
-                                                        <property name="label">Bitcoin </property>
+                                                        <property name="label">I0coin </property>
                                                         <property name="maximum_size"></property>
                                                         <property name="minimum_size"></property>
                                                         <property name="name">m_staticText40</property>
@@ -3235,7 +3235,7 @@
                                                 <property name="font"></property>
                                                 <property name="hidden">0</property>
                                                 <property name="id">wxID_ANY</property>
-                                                <property name="label">Copyright (c) 2009-2011 Bitcoin Developers&#x0A;&#x0A;This is experimental software.&#x0A;&#x0A;Distributed under the MIT/X11 software license, see the accompanying file &#x0A;license.txt or http://www.opensource.org/licenses/mit-license.php.&#x0A;&#x0A;This product includes software developed by the OpenSSL Project for use in the &#x0A;OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by &#x0A;Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.</property>
+                                                <property name="label">Copyright (c) 2009-2011 Bitcoin Developers&#x0A;Copyright (c) 2011 I0coin Developers&#x0A;&#x0A;This is experimental software.&#x0A;&#x0A;Distributed under the MIT/X11 software license, see the accompanying file &#x0A;license.txt or http://www.opensource.org/licenses/mit-license.php.&#x0A;&#x0A;This product includes software developed by the OpenSSL Project for use in the &#x0A;OpenSSL Toolkit (http://www.openssl.org/) and cryptographic software written by &#x0A;Eric Young (eay@cryptsoft.com) and UPnP software written by Thomas Bernard.</property>
                                                 <property name="maximum_size"></property>
                                                 <property name="minimum_size"></property>
                                                 <property name="name">m_staticTextMain</property>
@@ -3482,7 +3482,7 @@
                                 <property name="font"></property>
                                 <property name="hidden">0</property>
                                 <property name="id">wxID_ANY</property>
-                                <property name="label">Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</property>
+                                <property name="label">Enter a I0coin address (e.g. jNS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</property>
                                 <property name="maximum_size"></property>
                                 <property name="minimum_size"></property>
                                 <property name="name">m_staticTextInstructions</property>
