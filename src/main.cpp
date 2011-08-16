@@ -642,10 +642,10 @@ uint256 static GetOrphanRoot(const CBlock* pblock)
 
 int64 static GetBlockValue(int nHeight, int64 nFees)
 {
-    int64 nSubsidy = 96 * COIN;
+    int64 nSubsidy = 48 * COIN;
 
-    // Subsidy is cut in half every 4 years
-    nSubsidy >>= (nHeight / 109375);
+    // Subsidy is cut in half every 2 years
+    nSubsidy >>= (nHeight / 218750);
 
     return nSubsidy + nFees;
 }
@@ -653,8 +653,8 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 // Return the target (difficulty) to the new block based on the pindexLast block
 unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
 {
-    const int64 nTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-    const int64 nTargetSpacing = 10 * 60;
+    const int64 nTargetTimespan = 7 * 24 * 60 * 60; // one week
+    const int64 nTargetSpacing = 5 * 60;
     const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
     // Genesis block
@@ -662,7 +662,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
         return bnProofOfWorkLimit.GetCompact();
 
 	int64 nRemaining = (pindexLast->nHeight+1) % nInterval;
-	printf("** nRemaining = %d **\n", nRemaining);
+
     // Only change once per interval
     if ( nRemaining != 0)
 	{
@@ -672,14 +672,12 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
 		assert(pindexFirst);
 
 		int64 rema = GetAdjustedTime() - pindexFirst->GetBlockTime();
-		printf("** rema = %d **\n", rema);
-		printf("** GetTime() = %d **\n", GetTime());
-		printf("** pindexFirst->GetBlockTime() = %d **\n", pindexFirst->GetBlockTime());
+		
 		if(rema < nTargetTimespan)
 			return pindexLast->nBits;
 	}
 
-    // Go back by what we want to be 14 days worth of blocks
+    // Go back by what we want to be 7 days worth of blocks
     const CBlockIndex* pindexFirst = pindexLast;
     for (int i = 0; pindexFirst && i < nInterval-1; i++)
         pindexFirst = pindexFirst->pprev;
@@ -1543,7 +1541,7 @@ bool LoadBlockIndex(bool fAllowNew)
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 96 * COIN;
+        txNew.vout[0].nValue = 48 * COIN;
         txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
         CBlock block;
         block.vtx.push_back(txNew);
