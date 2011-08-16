@@ -817,7 +817,7 @@ void ShrinkDebugFile()
 //
 
 // NTP time functions taken from the public domain code here: http://blog.p-jansson.com/2010/03/ntp-client-using-boostasio.html
-time_t GetNTPTime( char* ntpServer )
+time_t GetNTPTime( const char* ntpServer )
 {
 	using boost::asio::ip::udp;
 	boost::asio::io_service io_service;
