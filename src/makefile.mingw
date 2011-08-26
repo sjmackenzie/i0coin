@@ -106,8 +106,8 @@ obj/nogui/%.o: %.cpp $(HEADERS)
 i0coind.exe: $(OBJS:obj/%=obj/nogui/%) obj/ui_res.o
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
 
-obj/test/%.o: obj/test/%.cpp $(HEADERS)
-	g++ -c $(CFLAGS) -o $@ $<
+obj/test/test_bitcoin.o: $(wildcard test/*.cpp) $(HEADERS)
+	g++ -c $(CFLAGS) -o $@ test/test_bitcoin.cpp
 
 test_i0coin.exe: obj/test/test_i0coin.o $(filter-out obj/nogui/init.o,$(OBJS:obj/%=obj/nogui/%))
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
