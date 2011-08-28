@@ -651,7 +651,7 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 }
 
 // Return the target (difficulty) to the new block based on the pindexLast block
-unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
+unsigned int static GetNextWorkRequired_OLD(const CBlockIndex* pindexLast)
 {
     const int64 nTargetTimespan = 7 * 24 * 60 * 60; // one week
     const int64 nTargetSpacing = 5 * 60;
@@ -666,6 +666,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
     // Only change once per interval
     if ( nRemaining != 0)
 	{
+/*
 		const CBlockIndex* pindexFirst = pindexLast;
 		for (int i = 0; pindexFirst && i < nRemaining-1; i++)
 			pindexFirst = pindexFirst->pprev;
@@ -674,6 +675,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
 		int64 rema = GetAdjustedTime() - pindexFirst->GetBlockTime();
 		
 		if(rema < nTargetTimespan)
+*/
 			return pindexLast->nBits;
 	}
 
@@ -700,7 +702,73 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
     if (bnNew > bnProofOfWorkLimit)
         bnNew = bnProofOfWorkLimit;
 
+ 
     /// debug print
+    printf("GetNextWorkRequired RETARGET\n");
+    printf("nTargetTimespan = %"PRI64d"    nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
+  printf("Before: %08x  %s\n", pindexLast->nBits, CBigNum().SetCompact(pindexLast->nBits).getuint256().ToString().c_str());
+    printf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.getuint256().ToString().c_str());
+
+    return bnNew.GetCompact();
+}
+
+//blatantly stolen from SolidCoin
+unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
+{
+    const int64 nTargetTimespan = 12 * 60 * 60; // 12 hours
+const int64 nTargetSpacing = 3 * 60;    //3 minute blocks
+  const int64 nInterval = nTargetTimespan / nTargetSpacing;
+
+    // Genesis block
+    if (pindexLast == NULL)
+        return bnProofOfWorkLimit.GetCompact();
+
+//okay, maybe not this line
+    if ((pindexLast->nHeight+1) < 14640)
+       return GetNextWorkRequired_OLD(pindexLast);
+
+    // Only change once per interval
+    if ((pindexLast->nHeight+1) % nInterval != 0)
+        return pindexLast->nBits;
+
+    // Go back by what we want to be 14 days worth of blocks
+    const CBlockIndex* pindexFirst = pindexLast;
+    for (int i = 0; pindexFirst && i < nInterval-1; i++)
+       pindexFirst = pindexFirst->pprev;
+    assert(pindexFirst);
+
+    // Limit adjustment step
+    int64 nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
+    int64 nTwoPercent = nTargetTimespan/50;
+    //printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
+
+    if (nActualTimespan < nTargetTimespan)  //is time taken for a block less than 3minutes?
+    {
+         //limit increase to a much lower amount than dictates to get past the pump-n-dump mining phase
+        //due to retargets being done more often it also needs to be lowered significantly from the 4x increase
+        if(nActualTimespan<(nTwoPercent*16)) //less than a minute?
+            nActualTimespan=(nTwoPercent*45); //pretend it was only 10% faster than desired
+        else if(nActualTimespan<(nTwoPercent*32)) //less than 2 minutes?
+            nActualTimespan=(nTwoPercent*47); //pretend it was only 6% faster than desired
+        else
+            nActualTimespan=(nTwoPercent*49); //pretend it was only 2% faster than desired
+
+        //int64 nTime=nTargetTimespan-nActualTimespan;
+        //nActualTimespan = nTargetTimespan/2;
+    }
+    else if (nActualTimespan > nTargetTimespan*4)   nActualTimespan = nTargetTimespan*4;
+
+    // Retarget
+    CBigNum bnNew;
+   bnNew.SetCompact(pindexLast->nBits);
+    bnNew *= nActualTimespan;
+    bnNew /= nTargetTimespan;
+
+
+    if (bnNew > bnProofOfWorkLimit)
+        bnNew = bnProofOfWorkLimit;
+
+   /// debug print
     printf("GetNextWorkRequired RETARGET\n");
     printf("nTargetTimespan = %"PRI64d"    nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
     printf("Before: %08x  %s\n", pindexLast->nBits, CBigNum().SetCompact(pindexLast->nBits).getuint256().ToString().c_str());
@@ -1536,7 +1604,7 @@ bool LoadBlockIndex(bool fAllowNew)
 		//  vMerkleTree: 764fc5f8e5
 
         // Genesis block
-        const char* pszTimestamp = "15/Ago/2011 - Diario El Dia - Obama cae al 39% en la aprobación ciudadana";
+        const char* pszTimestamp = "15/Ago/2011 - Diario El Dia - Obama cae al 39% en la aprobaciï¿½n ciudadana";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
