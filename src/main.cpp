@@ -1604,7 +1604,8 @@ bool LoadBlockIndex(bool fAllowNew)
 		//  vMerkleTree: 764fc5f8e5
 
         // Genesis block
-        const char* pszTimestamp = "15/Ago/2011 - Diario El Dia - Obama cae al 39% en la aprobaci�n ciudadana";
+        const char* pszTimestamp = "15/Ago/2011 - Diario El Dia - Obama cae al 39% en la aprobaci\xf3n ciudadana";
+
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
