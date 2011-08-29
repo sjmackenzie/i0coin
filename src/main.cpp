@@ -715,9 +715,9 @@ unsigned int static GetNextWorkRequired_OLD(const CBlockIndex* pindexLast)
 //blatantly stolen from SolidCoin
 unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
 {
-    const int64 nTargetTimespan = 12 * 60 * 60; // 12 hours
-const int64 nTargetSpacing = 3 * 60;    //3 minute blocks
-  const int64 nInterval = nTargetTimespan / nTargetSpacing;
+  const int64 nTargetTimespan = 3 * 60 * 60; // 3 hours
+  const int64 nTargetSpacing = 90;    //1.5 minute blocks
+  const int64 nInterval = nTargetTimespan / nTargetSpacing;  //120 block retarget
 
     // Genesis block
     if (pindexLast == NULL)
