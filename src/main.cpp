@@ -726,6 +726,9 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
 //okay, maybe not this line
     if ((pindexLast->nHeight+1) < 14640)
        return GetNextWorkRequired_OLD(pindexLast);
+   //hardcoded switch to 256.0 difficulty at block 14639
+   if ((pindexLast->nHeight+1) == 14640)
+       return 0x1C00FFFF;
 
     // Only change once per interval
     if ((pindexLast->nHeight+1) % nInterval != 0)
