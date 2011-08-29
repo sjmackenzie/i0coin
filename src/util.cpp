@@ -839,6 +839,17 @@ time_t GetNTPTime( const char* ntpServer )
 	socket.send_to(
 			boost::asio::buffer(data),
 			receiver_endpoint);
+	 //ugly hack, CBA to switch to asio async I/O just to get a 3 sec timeout
+	 int hSocket = socket.native();
+	 fd_set fdset;
+	 FD_ZERO(&fdset);
+	 FD_SET(hSocket, &fdset);
+	 struct timeval t;
+	 t.tv_sec = 3;
+          t.tv_usec = 0;
+	 int n_readable = select(hSocket+1, &fdset, NULL, NULL, &t);
+          if (!n_readable)
+		 return time_t(0);
 	socket.receive_from(
 			boost::asio::buffer(data),
 			sender_endpoint);
@@ -891,9 +902,16 @@ int64 GetAdjustedTime()
 	if((time - nTimeNTPLastSync) >= (60 * 5)) // Calculate the NTP offset once every 5 min
 	{
 		int64 ntpTime = GetNTPTime();	
-		nTimeNTPOffset = ntpTime - time;
 		nTimeNTPLastSync = time;
-		printf("nTimeNTPOffset=%d\n",nTimeNTPOffset);
+		 if (ntpTime)
+		 {
+			 nTimeNTPOffset = ntpTime - time;
+			 printf("nTimeNTPOffset=%d\n",nTimeNTPOffset);
+		 }
+		 else
+		 {
+			 printf("NTP timeout\n");
+		 }
 	}
 	
     return time + nTimeNTPOffset;
