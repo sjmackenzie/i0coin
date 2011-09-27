@@ -59,6 +59,7 @@ HEADERS = \
     util.h \
     wallet.h
 
+
 ifdef USE_UPNP
 	LIBPATHS += -L"$(DEPSDIR)/miniupnpc"
 	LIBS += -l miniupnpc -l iphlpapi
@@ -79,10 +80,7 @@ OBJS= \
     obj/rpc.o \
     obj/script.o \
     obj/util.o \
-    obj/wallet.o \
-    cryptopp/obj/sha.o \
-    cryptopp/obj/cpu.o
-
+    obj/wallet.o
 
 all: i0coin.exe
 
@@ -90,15 +88,11 @@ all: i0coin.exe
 obj/%.o: %.cpp $(HEADERS)
 	i586-mingw32msvc-g++ -c $(CFLAGS) -DGUI -o $@ $<
 
-cryptopp/obj/%.o: cryptopp/%.cpp
-	i586-mingw32msvc-g++ -c $(CFLAGS) -O3 -DCRYPTOPP_DISABLE_ASM -o $@ $<
-
 obj/ui_res.o: ../share/ui.rc  ../share/pixmaps/bitcoin.ico ../share/pixmaps/check.ico ../share/pixmaps/send16.bmp ../share/pixmaps/send16mask.bmp ../share/pixmaps/send16masknoshadow.bmp ../share/pixmaps/send20.bmp ../share/pixmaps/send20mask.bmp ../share/pixmaps/addressbook16.bmp ../share/pixmaps/addressbook16mask.bmp ../share/pixmaps/addressbook20.bmp ../share/pixmaps/addressbook20mask.bmp
 	i586-mingw32msvc-windres $(DEFS) $(INCLUDEPATHS) -o $@ -i $<
 
 i0coin.exe: $(OBJS) obj/ui.o obj/uibase.o obj/ui_res.o
 	i586-mingw32msvc-g++ $(CFLAGS) -mwindows -Wl,--subsystem,windows -o $@ $(LIBPATHS) $^ $(WXLIBS) $(LIBS)
-
 
 obj/nogui/%.o: %.cpp $(HEADERS)
 	i586-mingw32msvc-g++ -c $(CFLAGS) -o $@ $<
@@ -118,7 +112,6 @@ clean:
 	-rm -f obj/*.o
 	-rm -f obj/nogui/*.o
 	-rm -f obj/test/*.o
-	-rm -f cryptopp/obj/*.o
 	-rm -f test/*.o
 	-rm -f headers.h.gch
 	-rm -f i0coin.exe

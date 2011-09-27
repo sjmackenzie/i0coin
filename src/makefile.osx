@@ -71,9 +71,7 @@ OBJS= \
     obj/rpc.o \
     obj/script.o \
     obj/util.o \
-    obj/wallet.o \
-    cryptopp/obj/sha.o \
-    cryptopp/obj/cpu.o
+    obj/wallet.o
 
 ifdef USE_UPNP
 	LIBS += $(DEPSDIR)/lib/libminiupnpc.a
@@ -87,12 +85,8 @@ all: i0coin
 obj/%.o: %.cpp $(HEADERS)
 	$(CXX) -c $(CFLAGS) -DGUI -o $@ $<
 
-cryptopp/obj/%.o: cryptopp/%.cpp
-	$(CXX) -c $(CFLAGS) -O3 -DCRYPTOPP_DISABLE_ASM -o $@ $<
-
 i0coin: $(OBJS) obj/ui.o obj/uibase.o
 	$(CXX) $(CFLAGS) -o $@ $(LIBPATHS) $^ $(WXLIBS) $(LIBS)
-
 
 obj/nogui/%.o: %.cpp $(HEADERS)
 	$(CXX) -c $(CFLAGS) -o $@ $<
@@ -111,4 +105,3 @@ clean:
 	-rm -f obj/*.o
 	-rm -f obj/nogui/*.o
 	-rm -f obj/test/*.o
-	-rm -f cryptopp/obj/*.o

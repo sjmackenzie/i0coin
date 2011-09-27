@@ -81,13 +81,7 @@ OBJS= \
     obj\protocol.o \
     obj\script.o \
     obj\util.o \
-    obj\wallet.o \
-    cryptopp\obj\sha.o \
-    cryptopp\obj\cpu.o
-
-CRYPTOPP_OBJS= \
-    cryptopp\obj\sha.obj \
-    cryptopp\obj\cpu.obj
+    obj\wallet.o
 
 RC=../share
 
@@ -124,19 +118,12 @@ obj\ui.obj: $(HEADERS)
 
 obj\uibase.obj: $(HEADERS)
 
-cryptopp\obj\sha.obj: cryptopp\sha.cpp
-    cl $(CFLAGS) /O2 /DCRYPTOPP_DISABLE_ASM /Fo$@ %s
-
-cryptopp\obj\cpu.obj: cryptopp\cpu.cpp
-    cl $(CFLAGS) /O2 /DCRYPTOPP_DISABLE_ASM /Fo$@ %s
-
 obj\ui.res: $(RC)/ui.rc $(RC)/pixmaps/bitcoin.ico $(RC)/pixmaps/check.ico $(RC)/pixmaps/send16.bmp $(RC)/pixmaps/send16mask.bmp $(RC)/pixmaps/send16masknoshadow.bmp $(RC)/pixmaps/send20.bmp $(RC)/pixmaps/send20mask.bmp $(RC)/pixmaps/addressbook16.bmp $(RC)/pixmaps/addressbook16mask.bmp $(RC)/pixmaps/addressbook20.bmp $(RC)/pixmaps/addressbook20mask.bmp
     rc $(INCLUDEPATHS) $(DEFS) /Fo$@ %s
 
 i0coin.exe: $(OBJS) $(CRYPTOPP_OBJS) obj\ui.obj obj\uibase.obj obj\ui.res
     link /nologo /SUBSYSTEM:WINDOWS /OUT:$@ $(LIBPATHS) $** $(WXLIBS) $(LIBS)
 
-	
 .cpp{obj\nogui}.obj:
     cl $(CFLAGS) /Fo$@ %s
 
@@ -160,13 +147,12 @@ obj\nogui\rpc.obj: $(HEADERS)
 
 obj\nogui\init.obj: $(HEADERS)
 
-i0coind.exe: $(OBJS:obj\=obj\nogui\) $(CRYPTOPP_OBJS) obj\ui.res
+i0coind.exe: $(OBJS:obj\=obj\nogui\) obj\ui.res
     link /nologo /OUT:$@ $(LIBPATHS) $** $(LIBS)
 
 
 clean:
     -del /Q obj\*
     -del /Q obj\nogui\*
-    -del /Q cryptopp\obj\*
     -del /Q *.ilk
     -del /Q *.pdb

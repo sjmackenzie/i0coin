@@ -8,11 +8,11 @@
 #include "uint256_tests.cpp"
 #include "script_tests.cpp"
 #include "transaction_tests.cpp"
-
+#include "miner_tests.cpp"
 
 CWallet* pwalletMain;
 
 void Shutdown(void* parg)
 {
-	exit(0);
+  exit(0);
 }

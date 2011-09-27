@@ -79,9 +79,7 @@ OBJS= \
     obj/rpc.o \
     obj/script.o \
     obj/util.o \
-    obj/wallet.o \
-    cryptopp/obj/sha.o \
-    cryptopp/obj/cpu.o
+    obj/wallet.o
 
 
 all: i0coin.exe
@@ -90,15 +88,11 @@ all: i0coin.exe
 obj/%.o: %.cpp $(HEADERS)
 	g++ -c $(CFLAGS) -DGUI -o $@ $<
 
-cryptopp/obj/%.o: cryptopp/%.cpp
-	g++ -c $(CFLAGS) -O3 -DCRYPTOPP_X86_ASM_AVAILABLE -o $@ $<
-
 obj/ui_res.o: ../share/ui.rc  ../share/pixmaps/bitcoin.ico ../share/pixmaps/check.ico ../share/pixmaps/send16.bmp ../share/pixmaps/send16mask.bmp ../share/pixmaps/send16masknoshadow.bmp ../share/pixmaps/send20.bmp ../share/pixmaps/send20mask.bmp ../share/pixmaps/addressbook16.bmp ../share/pixmaps/addressbook16mask.bmp ../share/pixmaps/addressbook20.bmp ../share/pixmaps/addressbook20mask.bmp
 	windres $(DEFS) $(INCLUDEPATHS) -o $@ -i $<
 
 i0coin.exe: $(OBJS) obj/ui.o obj/uibase.o obj/ui_res.o
 	g++ $(CFLAGS) -mwindows -Wl,--subsystem,windows -o $@ $(LIBPATHS) $^ $(WXLIBS) $(LIBS)
-
 
 obj/nogui/%.o: %.cpp $(HEADERS)
 	g++ -c $(CFLAGS) -o $@ $<
@@ -117,6 +111,5 @@ clean:
 	-del /Q obj\*
 	-del /Q obj\nogui\*
 	-del /Q obj\test\*
-	-del /Q cryptopp\obj\*
 	-del /Q test\*.o
 	-del /Q headers.h.gch
