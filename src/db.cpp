@@ -35,7 +35,14 @@ static void EnvShutdown(bool fRemoveLogFiles)
         return;
 
     fDbEnvInit = false;
-    dbenv.close(0);
+    try
+    {
+        dbenv.close(0);
+    }
+    catch (const DbException& e)
+    {
+        printf("EnvShutdown exception: %s (%d)\n", e.what(), e.get_errno());
+    }
     DbEnv(0).remove(GetDataDir().c_str(), 0);
 
     if (fRemoveLogFiles)
@@ -230,7 +237,10 @@ bool CDB::Rewrite(const string& strFile, const char* pszSkip)
                         CDataStream ssValue;
                         int ret = db.ReadAtCursor(pcursor, ssKey, ssValue, DB_NEXT);
                         if (ret == DB_NOTFOUND)
+                        {
+                            pcursor->close();
                             break;
+                        }
                         else if (ret != 0)
                         {
                             pcursor->close();
@@ -254,14 +264,11 @@ bool CDB::Rewrite(const string& strFile, const char* pszSkip)
                     }
                 if (fSuccess)
                 {
-                    Db* pdb = mapDb[strFile];
-                    if (pdb->close(0))
-                        fSuccess = false;
+                    db.Close();
+                    CloseDb(strFile);
                     if (pdbCopy->close(0))
                         fSuccess = false;
-                    delete pdb;
                     delete pdbCopy;
-                    mapDb[strFile] = NULL;
                 }
                 if (fSuccess)
                 {
