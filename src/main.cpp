@@ -723,20 +723,29 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast)
     if (pindexLast == NULL)
         return bnProofOfWorkLimit.GetCompact();
 
+    const int height = pindexLast->nHeight + 1;
+
 //okay, maybe not this line
-    if ((pindexLast->nHeight+1) < 14640)
+    if (height < 14640)
        return GetNextWorkRequired_OLD(pindexLast);
    //hardcoded switch to 256.0 difficulty at block 14639
-   if ((pindexLast->nHeight+1) == 14640)
+   if (height == 14640)
        return 0x1C00FFFF;
 
     // Only change once per interval
-    if ((pindexLast->nHeight+1) % nInterval != 0)
+    if (height % nInterval != 0)
         return pindexLast->nBits;
+
+    // This fixes an issue where a 51% attack can change difficulty at will.
+    // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
+    // Patch modified from Litecoin.
+    int blockstogoback = nInterval-1;
+    if (height >= 150000 && height != nInterval)
+        blockstogoback = nInterval;
 
     // Go back by what we want to be 14 days worth of blocks
     const CBlockIndex* pindexFirst = pindexLast;
-    for (int i = 0; pindexFirst && i < nInterval-1; i++)
+    for (int i = 0; pindexFirst && i < blockstogoback; i++)
        pindexFirst = pindexFirst->pprev;
     assert(pindexFirst);
 
