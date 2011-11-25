@@ -31,7 +31,7 @@ map<COutPoint, CInPoint> mapNextTx;
 map<uint256, CBlockIndex*> mapBlockIndex;
 uint256 hashGenesisBlock("0x00000000de13b7f748fb214e3f9c284fe6a57e1559fee545bfe473f72599c0d1");
 CBigNum bnProofOfWorkLimit(~uint256(0) >> 32);
-const int nTotalBlocksEstimate = 0; // Conservative estimate of total nr of blocks on main chain
+const int nTotalBlocksEstimate = 131130; // Conservative estimate of total nr of blocks on main chain
 const int nInitialBlockThreshold = 120; // Regard blocks up until N-threshold as "initial download"
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -1452,7 +1452,8 @@ bool CBlock::AcceptBlock()
     // Check that the block chain matches the known block chain up to a checkpoint
     if (!fTestNet &&
          (nHeight == 36180 && hash != uint256("0000000000635e5e1a8027383f028f4c666f9e20f4f90968ba8bf7ba8431c71f")) &&
-         (nHeight == 127360 && hash != uint256("000000000330be69aa359cb69896554c0dfcd9d76b5415d526708ed737bfe0b6")))
+         (nHeight == 127360 && hash != uint256("000000000330be69aa359cb69896554c0dfcd9d76b5415d526708ed737bfe0b6")) &&
+         (nHeight == 131130 && hash != uint256("0000000000853272e70ba9aafe9f685c186a7ba3aa57d2ddba7c44c6a25efe09")))
         return error("AcceptBlock() : rejected by checkpoint lockin at %d", nHeight);
 	
     // Write block to history file
@@ -1469,7 +1470,7 @@ bool CBlock::AcceptBlock()
     if (hashBestChain == hash)
         CRITICAL_BLOCK(cs_vNodes)
             BOOST_FOREACH(CNode* pnode, vNodes)
-                if (nBestHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 127360))
+                if (nBestHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 131130))
                     pnode->PushInventory(CInv(MSG_BLOCK, hash));
 
     return true;
