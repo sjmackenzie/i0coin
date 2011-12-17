@@ -30,7 +30,7 @@ map<COutPoint, CInPoint> mapNextTx;
 map<uint256, CBlockIndex*> mapBlockIndex;
 uint256 hashGenesisBlock("0x00000000de13b7f748fb214e3f9c284fe6a57e1559fee545bfe473f72599c0d1");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 32);
-const int nTotalBlocksEstimate = 142900; // Conservative estimate of total nr of blocks on main chain
+const int nTotalBlocksEstimate = 155000; // Conservative estimate of total nr of blocks on main chain
 const int nInitialBlockThreshold = 120; // Regard blocks up until N-threshold as "initial download"
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -1473,7 +1473,8 @@ bool CBlock::AcceptBlock()
          (nHeight == 127360 && hash != uint256("000000000330be69aa359cb69896554c0dfcd9d76b5415d526708ed737bfe0b6")) &&
          (nHeight == 131130 && hash != uint256("0000000000853272e70ba9aafe9f685c186a7ba3aa57d2ddba7c44c6a25efe09")) &&
          (nHeight == 136800 && hash != uint256("0000000000c8c592fce349ed8cf7eba3113f3c243c9e1cbe27fb6166cc4ffa00")) &&
-         (nHeight == 142900 && hash != uint256("00000000005eb49db6f29a6aae382b7a8e9a109aba42e536e6d74b95aba4dffd")))
+         (nHeight == 142900 && hash != uint256("00000000005eb49db6f29a6aae382b7a8e9a109aba42e536e6d74b95aba4dffd")) &&
+         (nHeight == 155000 && hash != uint256("0000000000041a6bc4cd419ed90a6bb1dbf8df8a587d162504dba9ae84a4418c")))
         return error("AcceptBlock() : rejected by checkpoint lockin at %d", nHeight);
 	
     // Write block to history file
@@ -1490,7 +1491,7 @@ bool CBlock::AcceptBlock()
     if (hashBestChain == hash)
         CRITICAL_BLOCK(cs_vNodes)
             BOOST_FOREACH(CNode* pnode, vNodes)
-                if (nBestHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 142900))
+                if (nBestHeight > (pnode->nStartingHeight != -1 ? pnode->nStartingHeight - 2000 : 155000))
                     pnode->PushInventory(CInv(MSG_BLOCK, hash));
 
     return true;
