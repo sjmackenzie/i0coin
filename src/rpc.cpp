@@ -738,6 +738,47 @@ Value verifymessage(const Array& params, bool fHelp)
     return (key.GetAddress() == addr);
 }
 
+Value sendcheckpoint(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() != 3)
+        throw runtime_error(
+            "sendcheckpoint <coinaddress> <height> <checkpoint>\n"
+            "Send a checkpoint signed with the private key of the address to nodes");
+
+    if (pwalletMain->IsLocked())
+        throw JSONRPCError(-13, "Error: Please enter the wallet passphrase with walletpassphrase first.");
+
+    string strAddress = params[0].get_str();
+    int nHeight = params[1].get_int();
+    uint256 hash(params[2].get_str());
+
+    CBitcoinAddress addr(strAddress);
+    if (!addr.IsValid())
+        throw JSONRPCError(-3, "Invalid address");
+
+    CKey key;
+    if (!pwalletMain->GetKey(addr, key))
+        throw JSONRPCError(-4, "Private key not available");
+
+    CSignedCheckpoint checkpoint;
+    checkpoint.nHeight = nHeight;
+    checkpoint.hash = hash; 
+
+    CDataStream ss(SER_GETHASH);
+    ss << checkpoint.ToString();
+
+    vector<unsigned char> vchSig;
+    if (!key.SignCompact(Hash(ss.begin(), ss.end()), checkpoint.vchSig))
+        throw JSONRPCError(-5, "Sign failed");
+
+    CRITICAL_BLOCK(cs_vNodes)
+        BOOST_FOREACH(CNode* pnode, vNodes)
+        if (pnode->setKnown.insert(checkpoint.GetHash()).second)
+            pnode->PushMessage("checkpoint", checkpoint);
+
+    return true;
+}
+
 
 Value getreceivedbyaddress(const Array& params, bool fHelp)
 {
@@ -2246,6 +2287,7 @@ pair<string, rpcfn_type> pCallTable[] =
     make_pair("listtransactions",       &listtransactions),
     make_pair("signmessage",           &signmessage),
     make_pair("verifymessage",         &verifymessage),
+    make_pair("sendcheckpoint",         &sendcheckpoint),
     make_pair("getwork",                &getwork),
     make_pair("getworkaux",             &getworkaux),
     make_pair("getauxblock",            &getauxblock),
@@ -2880,6 +2922,7 @@ int CommandLineRPC(int argc, char *argv[])
         if (strMethod == "getworkaux"             && n > 2) ConvertTo<boost::int64_t>(params[2]);
         if (strMethod == "listaccounts"           && n > 0) ConvertTo<boost::int64_t>(params[0]);
 	if (strMethod == "getblockbycount"        && n > 0) ConvertTo<boost::int64_t>(params[0]);
+	if (strMethod == "sendcheckpoint"         && n > 2) ConvertTo<boost::int64_t>(params[1]);
         if (strMethod == "walletpassphrase"       && n > 1) ConvertTo<boost::int64_t>(params[1]);
         if (strMethod == "sendmany"               && n > 1)
         {

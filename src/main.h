@@ -1579,4 +1579,85 @@ public:
     bool ProcessAlert();
 };
 
+// Checkpoints are sent from authoritative nodes that are trusted. They are signed and
+// provide the block height and hash for that block to be checkpointed by nodes. This
+// system can be enabled by individual nodes using the "-trust" argument. The
+// public keys of nodes they trust can be provided by "-trustkey".
+class CSignedCheckpoint
+{
+public:
+    int nVersion;
+    int nHeight;
+    uint256 hash;    
+    std::vector<unsigned char> vchSig;
+
+    CSignedCheckpoint()
+    {
+        SetNull();
+    }
+
+    IMPLEMENT_SERIALIZE
+    (
+        READWRITE(this->nVersion);
+        nVersion = this->nVersion;
+        READWRITE(nHeight);
+        READWRITE(hash);
+        READWRITE(vchSig);
+    )
+
+    void SetNull()
+    {
+        nVersion = 1;
+        nHeight = -1;
+        hash = 0;
+        vchSig.clear();
+    }
+
+    bool IsNull() const
+    {
+        return (nHeight == -1);
+    }
+
+    uint256 GetHash() const
+    {
+        return SerializeHash(*this);
+    }
+
+
+    std::string ToString() const
+    {
+        return strprintf(
+                "CSignedCheckpoint(\n"
+                "    nVersion     = %d\n"
+                "    nHeight      = %d\n"
+                "    nHash        = %s\n"
+                ")\n",
+            nVersion,
+            nHeight,
+            hash.ToString().c_str()
+          );
+    }
+
+    void print() const
+    {
+        printf("%s", ToString().c_str());
+    }
+
+    bool CheckSignature(const std::string& address) const
+    {
+        CBitcoinAddress addr(address);
+        if (!addr.IsValid())
+            return false;
+
+        CDataStream ss(SER_GETHASH);
+        ss << ToString();
+
+        CKey key;
+        if (!key.SetCompactSignature(Hash(ss.begin(), ss.end()), vchSig))
+            return false;
+
+        return (key.GetAddress() == addr);
+    }
+};
+
 #endif

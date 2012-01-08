@@ -46,6 +46,8 @@ multimap<uint256, CBlock*> mapOrphanBlocksByPrev;
 map<uint256, CDataStream*> mapOrphanTransactions;
 multimap<uint256, CDataStream*> mapOrphanTransactionsByPrev;
 
+// Checkpoint received by trusted node
+CSignedCheckpoint signedCheckpoint;
 
 double dHashesPerSec;
 int64 nHPSTimerStart;
@@ -2317,6 +2319,76 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             mapAlreadyAskedFor.erase(inv);
     }
 
+    else if (strCommand == "checkpoint")
+    {
+        // TODO: Need flood control
+        CSignedCheckpoint checkpoint;
+        vRecv >> checkpoint;
+
+        printf("received checkpoint\n%s", checkpoint.ToString().c_str());
+
+        if (GetBoolArg("-trust")) {
+            // If the checkpoint is not greater than the last hardcoded checkpoint, it is invalid
+                // If we have any "-trustkey", ignore the builtin key and try them
+            // If we have no "-trustkey" then use the builtin key
+            bool valid = false; 
+            if (checkpoint.nHeight <= nTotalBlocksEstimate) {
+                valid = false;
+            }
+            else if (mapArgs.count("-trustkey") > 0) {
+                BOOST_FOREACH(string address, mapMultiArgs["-trustkey"])
+                {
+                    if (checkpoint.CheckSignature(address)) {
+                        valid = true;
+                        break;
+                    }
+                }
+            }
+            else {
+                // Hardcoded trust address
+                valid = checkpoint.CheckSignature("jbPuQQyCgjbLbBaJR1RArkJ1xUbSdKHC7o");
+            }
+
+            if (valid) {
+                // Only accept a checkpoint greater than one we currently have
+                printf("signedCheckpoint: %s\n", signedCheckpoint.ToString().c_str()); 
+                if (checkpoint.nHeight > signedCheckpoint.nHeight) {
+                    signedCheckpoint.nHeight = checkpoint.nHeight;
+                    signedCheckpoint.hash = checkpoint.hash;
+                    signedCheckpoint.vchSig = checkpoint.vchSig;
+                    printf("checkpoint: ACCEPTED\n");
+                    // TODO: need to check if our current best chain is based on checkpoint
+                    // and REORG if not
+                }
+                else if (checkpoint.nHeight == signedCheckpoint.nHeight) {
+                    printf("checkpoint: CURRENT\n");
+                }
+                else {
+                    // Received a checkpoint lower than what we have. Inform the node
+                    // of our newer checkpoint.
+                    printf("checkpoint: OLD\n");
+                    if (pfrom->setKnown.insert(signedCheckpoint.GetHash()).second)
+                        pfrom->PushMessage("checkpoint", signedCheckpoint);
+                }
+            }
+            else {
+                printf("checkpoint: FAILED\n");
+            }
+        }
+        else {
+            printf("checkpoint: NOTRUST\n");
+        }
+
+        // Relay even if not -trust so trusting nodes can get the message.
+        // Don't relay to nodes we've already sent to.
+        // Consider not relaying if the signature fails? But then 
+        // -trustkey nodes will not have their messages propogated by the
+        // network.
+        CRITICAL_BLOCK(cs_vNodes)
+            BOOST_FOREACH(CNode* pnode, vNodes)
+               if (pnode->setKnown.insert(checkpoint.GetHash()).second)
+                   pnode->PushMessage("checkpoint", checkpoint);
+    }
 
     else if (strCommand == "getaddr")
     {
