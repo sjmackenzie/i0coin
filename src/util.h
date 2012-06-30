@@ -27,6 +27,8 @@ typedef int pid_t; /* define for windows compatiblity */
 #include <boost/interprocess/sync/lock_options.hpp>
 #include <boost/date_time/gregorian/gregorian_types.hpp>
 #include <boost/date_time/posix_time/posix_time_types.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/asio.hpp>
 
 #include <openssl/sha.h>
 #include <openssl/ripemd.h>

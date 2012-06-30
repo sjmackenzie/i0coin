@@ -124,7 +124,7 @@ std::string _(const char* psz)
 static void handleRunawayException(std::exception *e)
 {
     PrintExceptionContinue(e, "Runaway exception");
-    QMessageBox::critical(0, "Runaway exception", BitcoinGUI::tr("A fatal error occured. Bitcoin can no longer continue safely and will quit.") + QString("\n\n") + QString::fromStdString(strMiscWarning));
+    QMessageBox::critical(0, "Runaway exception", BitcoinGUI::tr("A fatal error occured. I0coin can no longer continue safely and will quit.") + QString("\n\n") + QString::fromStdString(strMiscWarning));
     exit(1);
 }
 
@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
     // Do this early as we don't want to bother initializing if we are just calling IPC
     for (int i = 1; i < argc; i++)
     {
-        if (strlen(argv[i]) > 7 && strncasecmp(argv[i], "bitcoin:", 8) == 0)
+        if (strlen(argv[i]) > 7 && strncasecmp(argv[i], "i0coin:", 8) == 0)
         {
             const char *strURI = argv[i];
             try {
@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
     // Command-line options take precedence:
     ParseParameters(argc, argv);
 
-    // ... then bitcoin.conf:
+    // ... then i0coin.conf:
     if (!boost::filesystem::is_directory(GetDataDir(false)))
     {
         fprintf(stderr, "Error: Specified directory does not exist\n");
@@ -177,12 +177,12 @@ int main(int argc, char *argv[])
 
     // Application identification (must be set before OptionsModel is initialized,
     // as it is used to locate QSettings)
-    app.setOrganizationName("Bitcoin");
-    app.setOrganizationDomain("bitcoin.org");
+    app.setOrganizationName("I0coin");
+    app.setOrganizationDomain("i0coin.org");
     if(GetBoolArg("-testnet")) // Separate UI settings for testnet
-        app.setApplicationName("Bitcoin-Qt-testnet");
+        app.setApplicationName("I0coin-Qt-testnet");
     else
-        app.setApplicationName("Bitcoin-Qt");
+        app.setApplicationName("I0coin-Qt");
 
     // ... then GUI settings:
     OptionsModel optionsModel;
@@ -267,7 +267,7 @@ int main(int argc, char *argv[])
                 // Check for URI in argv
                 for (int i = 1; i < argc; i++)
                 {
-                    if (strlen(argv[i]) > 7 && strncasecmp(argv[i], "bitcoin:", 8) == 0)
+                    if (strlen(argv[i]) > 7 && strncasecmp(argv[i], "i0coin:", 8) == 0)
                     {
                         const char *strURI = argv[i];
                         try {

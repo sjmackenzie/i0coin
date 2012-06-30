@@ -102,7 +102,7 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>BTC</string>
+               <string>I0C</string>
               </property>
               <property name="buddy">
                <cstring>lnReqAmount</cstring>

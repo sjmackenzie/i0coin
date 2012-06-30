@@ -42,6 +42,7 @@ LIBS += -l kernel32 -l user32 -l gdi32 -l comdlg32 -l winspool -l winmm -l shell
 HEADERS = $(wildcard *.h)
 
 OBJS= \
+	obj/auxpow.o \
     obj/version.o \
     obj/checkpoints.o \
     obj/netbase.o \
@@ -64,12 +65,12 @@ OBJS= \
     obj/noui.o
 
 
-all: bitcoind.exe
+all: i0coind.exe
 
 obj/%.o: %.cpp $(HEADERS)
 	g++ -c $(CFLAGS) -o $@ $<
 
-bitcoind.exe: $(OBJS:obj/%=obj/%)
+i0coind.exe: $(OBJS:obj/%=obj/%)
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -77,11 +78,11 @@ TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
 obj-test/%.o: test/%.cpp $(HEADERS)
 	g++ -c $(TESTDEFS) $(CFLAGS) -o $@ $<
 
-test_bitcoin.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
+test_i0coin.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ -lboost_unit_test_framework $(LIBS)
 
 clean:
-	-del /Q bitcoind test_bitcoin
+	-del /Q i0coind test_i0coin
 	-del /Q obj\*
 	-del /Q obj-test\*
 	-del /Q build.h

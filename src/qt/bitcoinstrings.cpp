@@ -6,17 +6,17 @@
 #define UNUSED
 #endif
 static const char UNUSED *bitcoin_strings[] = {QT_TRANSLATE_NOOP("bitcoin-core", ""
-"Unable to bind to port %d on this computer.  Bitcoin is probably already "
+"Unable to bind to port %d on this computer.  I0coin is probably already "
 "running."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Warning: Disk space is low  "),
-QT_TRANSLATE_NOOP("bitcoin-core", "Bitcoin version"),
+QT_TRANSLATE_NOOP("bitcoin-core", "I0coin version"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Usage:"),
-QT_TRANSLATE_NOOP("bitcoin-core", "Send command to -server or bitcoind"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Send command to -server or i0coind"),
 QT_TRANSLATE_NOOP("bitcoin-core", "List commands"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Get help for a command"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Options:"),
-QT_TRANSLATE_NOOP("bitcoin-core", "Specify configuration file (default: bitcoin.conf)"),
-QT_TRANSLATE_NOOP("bitcoin-core", "Specify pid file (default: bitcoind.pid)"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Specify configuration file (default: i0coin.conf)"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Specify pid file (default: i0coind.pid)"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Generate coins"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Don't generate coins"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Start minimized"),
@@ -76,17 +76,17 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 QT_TRANSLATE_NOOP("bitcoin-core", "This help message"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Usage"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
-"Cannot obtain a lock on data directory %s.  Bitcoin is probably already "
+"Cannot obtain a lock on data directory %s.  I0coin is probably already "
 "running."),
-QT_TRANSLATE_NOOP("bitcoin-core", "Bitcoin"),
+QT_TRANSLATE_NOOP("bitcoin-core", "I0coin"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Loading addresses..."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error loading addr.dat"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Loading block index..."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error loading blkindex.dat"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Loading wallet..."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error loading wallet.dat: Wallet corrupted"),
-QT_TRANSLATE_NOOP("bitcoin-core", "Error loading wallet.dat: Wallet requires newer version of Bitcoin"),
-QT_TRANSLATE_NOOP("bitcoin-core", "Wallet needed to be rewritten: restart Bitcoin to complete"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Error loading wallet.dat: Wallet requires newer version of I0coin"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Wallet needed to be rewritten: restart I0coin to complete"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error loading wallet.dat"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Cannot downgrade wallet"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Cannot initialize keypool"),

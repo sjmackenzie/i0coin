@@ -87,6 +87,7 @@ xCXXFLAGS=-pthread -Wall -Wextra -Wno-sign-compare -Wno-invalid-offsetof -Wno-un
     $(DEBUGFLAGS) $(DEFS) $(HARDENING) $(CXXFLAGS)
 
 OBJS= \
+	obj/auxpow.o \
     obj/version.o \
     obj/checkpoints.o \
     obj/netbase.o \
@@ -109,7 +110,7 @@ OBJS= \
     obj/noui.o
 
 
-all: bitcoind
+all: i0coind
 
 # auto-generated dependencies:
 -include obj/*.P
@@ -127,7 +128,7 @@ obj/%.o: %.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-bitcoind: $(OBJS:obj/%=obj/%)
+i0coind: $(OBJS:obj/%=obj/%)
 	$(CXX) $(xCXXFLAGS) -o $@ $^ $(LDFLAGS) $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -139,11 +140,11 @@ obj-test/%.o: test/%.cpp
 	      -e '/^$$/ d' -e 's/$$/ :/' < $(@:%.o=%.d) >> $(@:%.o=%.P); \
 	  rm -f $(@:%.o=%.d)
 
-test_bitcoin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
+test_i0coin: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	$(CXX) $(xCXXFLAGS) -o $@ $(LIBPATHS) $^ -Wl,-B$(LMODE) -lboost_unit_test_framework $(LDFLAGS) $(LIBS)
 
 clean:
-	-rm -f bitcoind test_bitcoin
+	-rm -f i0coind test_i0coin
 	-rm -f obj/*.o
 	-rm -f obj-test/*.o
 	-rm -f obj/*.P

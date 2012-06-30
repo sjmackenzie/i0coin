@@ -253,7 +253,7 @@ public:
 };
 
 /** base58-encoded bitcoin addresses.
- * Public-key-hash-addresses have version 0 (or 111 testnet).
+ * Public-key-hash-addresses have version 0 (or 112 testnet).
  * The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
  * Script-hash-addresses have version 5 (or 196 testnet).
  * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
@@ -263,9 +263,9 @@ class CBitcoinAddress : public CBase58Data
 public:
     enum
     {
-        PUBKEY_ADDRESS = 0,
+        PUBKEY_ADDRESS = 105,
         SCRIPT_ADDRESS = 5,
-        PUBKEY_ADDRESS_TEST = 111,
+        PUBKEY_ADDRESS_TEST = 112,
         SCRIPT_ADDRESS_TEST = 196,
     };
 

@@ -6,17 +6,17 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="14"/>
-        <source>About Bitcoin</source>
+        <source>About I0coin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../forms/aboutdialog.ui" line="53"/>
-        <source>&lt;b&gt;Bitcoin&lt;/b&gt; version</source>
+        <source>&lt;b&gt;I0coin&lt;/b&gt; version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../forms/aboutdialog.ui" line="91"/>
-        <source>Copyright © 2009-2012 Bitcoin Developers
+        <source>Copyright © 2009-2012 I0coin Developers
 
 This is experimental software.
 
@@ -35,7 +35,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="20"/>
-        <source>These are your Bitcoin addresses for receiving payments.  You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <source>These are your I0coin addresses for receiving payments.  You may want to give a different one to each sender so you can keep track of who is paying you.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -234,7 +234,7 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="112"/>
-        <source>Bitcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>I0coin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your i0coins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -289,12 +289,12 @@ Are you sure you wish to encrypt your wallet?</source>
     <name>BitcoinGUI</name>
     <message>
         <location filename="../bitcoingui.cpp" line="70"/>
-        <source>Bitcoin Wallet</source>
+        <source>I0coin Wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="243"/>
-        <source>Show/Hide &amp;Bitcoin</source>
+        <source>Show/Hide &amp;I0coin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -349,7 +349,7 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="205"/>
-        <source>Send coins to a bitcoin address</source>
+        <source>Send coins to a i0coin address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -379,7 +379,7 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="235"/>
-        <source>Show information about Bitcoin</source>
+        <source>Show information about I0coin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -399,7 +399,7 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="241"/>
-        <source>Modify configuration options for bitcoin</source>
+        <source>Modify configuration options for i0coin</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
@@ -422,7 +422,7 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="244"/>
-        <source>Show or hide the Bitcoin window</source>
+        <source>Show or hide the I0coin window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -492,7 +492,7 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="383"/>
-        <source>Bitcoin client</source>
+        <source>I0coin client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -502,10 +502,10 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message numerus="yes">
         <location filename="../bitcoingui.cpp" line="475"/>
-        <source>%n active connection(s) to Bitcoin network</source>
+        <source>%n active connection(s) to I0coin network</source>
         <translation>
-            <numerusform>%n active connection to Bitcoin network</numerusform>
-            <numerusform>%n active connections to Bitcoin network</numerusform>
+            <numerusform>%n active connection to I0coin network</numerusform>
+            <numerusform>%n active connections to I0coin network</numerusform>
         </translation>
     </message>
     <message>
@@ -692,7 +692,7 @@ Address: %4
     </message>
     <message>
         <location filename="../editaddressdialog.cpp" line="96"/>
-        <source>The entered address &quot;%1&quot; is not a valid bitcoin address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid i0coin address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -710,12 +710,12 @@ Address: %4
     <name>MainOptionsPage</name>
     <message>
         <location filename="../optionsdialog.cpp" line="170"/>
-        <source>&amp;Start Bitcoin on window system startup</source>
+        <source>&amp;Start I0coin on window system startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="171"/>
-        <source>Automatically start Bitcoin after the computer is turned on</source>
+        <source>Automatically start I0coin after the computer is turned on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -735,7 +735,7 @@ Address: %4
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="185"/>
-        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the I0coin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -916,7 +916,7 @@ Address: %4
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="47"/>
-        <source>123.456 BTC</source>
+        <source>123.456 I0C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -936,7 +936,7 @@ Address: %4
     </message>
     <message>
         <location filename="../forms/overviewpage.ui" line="75"/>
-        <source>0 BTC</source>
+        <source>0 I0C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -993,7 +993,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../forms/qrcodedialog.ui" line="105"/>
-        <source>BTC</source>
+        <source>I0C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1068,7 +1068,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../forms/sendcoinsdialog.ui" line="113"/>
-        <source>123.456 BTC</source>
+        <source>123.456 I0C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1197,7 +1197,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="25"/>
-        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
+        <source>Enter a I0coin address (e.g. jWsjM7DTb9ujmuAF9tJY77SsKa3vscbzQm)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1655,7 +1655,7 @@ p, li { white-space: pre-wrap; }
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="7"/>
-        <source>Bitcoin version</source>
+        <source>I0coin version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1665,7 +1665,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="9"/>
-        <source>Send command to -server or bitcoind</source>
+        <source>Send command to -server or i0coind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1685,12 +1685,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="13"/>
-        <source>Specify configuration file (default: bitcoin.conf)</source>
+        <source>Specify configuration file (default: i0coin.conf)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="14"/>
-        <source>Specify pid file (default: bitcoind.pid)</source>
+        <source>Specify pid file (default: i0coind.pid)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1745,7 +1745,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="25"/>
-        <source>Listen for connections on &lt;port&gt; (default: 8333 or testnet: 18333)</source>
+        <source>Listen for connections on &lt;port&gt; (default: 7333 or testnet: 17333)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1825,7 +1825,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="51"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8332)</source>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 7332)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1906,12 +1906,12 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="73"/>
-        <source>Cannot obtain a lock on data directory %s.  Bitcoin is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s.  I0coin is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="76"/>
-        <source>Bitcoin</source>
+        <source>I0coin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1936,12 +1936,12 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="83"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of I0coin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="84"/>
-        <source>Wallet needed to be rewritten: restart Bitcoin to complete</source>
+        <source>Wallet needed to be rewritten: restart I0coin to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2086,7 +2086,7 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="3"/>
-        <source>Unable to bind to port %d on this computer.  Bitcoin is probably already running.</source>
+        <source>Unable to bind to port %d on this computer.  I0coin is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2099,7 +2099,7 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
         <source>%s, you must set a rpcpassword in the configuration file:
  %s
 It is recommended you use the following random password:
-rpcuser=bitcoinrpc
+rpcuser=i0coinrpc
 rpcpassword=%s
 (you do not need to remember this password)
 If the file does not exist, create it with owner-readable-only file permissions.
@@ -2125,7 +2125,7 @@ If the file does not exist, create it with owner-readable-only file permissions.
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="114"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong Bitcoin will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong I0coin will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

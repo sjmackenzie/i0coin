@@ -80,6 +80,8 @@ contains(BITCOIN_NEED_QT_PLUGINS, 1) {
     # do not enable this on windows, as it will result in a non-working executable!
 }
 
+message(pico2)
+
 # regenerate src/build.h
 !windows || contains(USE_BUILD_INFO, 1) {
     genbuild.depends = FORCE
@@ -89,6 +91,8 @@ contains(BITCOIN_NEED_QT_PLUGINS, 1) {
     QMAKE_EXTRA_TARGETS += genbuild
     DEFINES += HAVE_BUILD_INFO
 }
+
+message(pico3)
 
 QMAKE_CXXFLAGS_WARN_ON = -fdiagnostics-show-option -Wall -Wextra -Wformat -Wformat-security -Wno-invalid-offsetof -Wno-sign-compare -Wno-unused-parameter
 
@@ -158,7 +162,8 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/notificator.h \
     src/qt/qtipcserver.h \
     src/allocators.h \
-    src/ui_interface.h
+    src/ui_interface.h\
+    src/auxpow.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -212,7 +217,8 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/askpassphrasedialog.cpp \
     src/protocol.cpp \
     src/qt/notificator.cpp \
-    src/qt/qtipcserver.cpp
+    src/qt/qtipcserver.cpp \
+    src/auxpow.cpp
 
 RESOURCES += \
     src/qt/bitcoin.qrc
@@ -271,7 +277,7 @@ OTHER_FILES += \
 # platform specific defaults, if not overridden on command line
 isEmpty(BOOST_LIB_SUFFIX) {
     macx:BOOST_LIB_SUFFIX = -mt
-    windows:BOOST_LIB_SUFFIX = -mgw44-mt-1_43
+    windows:BOOST_LIB_SUFFIX = -mgw46-mt-1_48
 }
 
 isEmpty(BOOST_THREAD_LIB_SUFFIX) {
@@ -330,7 +336,7 @@ INCLUDEPATH += $$BOOST_INCLUDE_PATH $$BDB_INCLUDE_PATH $$OPENSSL_INCLUDE_PATH $$
 LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
 LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
 # -lgdi32 has to happen after -lcrypto (see  #681)
-windows:LIBS += -lole32 -luuid -lgdi32
+windows:LIBS += -lole32 -luuid -lgdi32 -lws2_32
 LIBS += -lboost_system$$BOOST_LIB_SUFFIX -lboost_filesystem$$BOOST_LIB_SUFFIX -lboost_program_options$$BOOST_LIB_SUFFIX -lboost_thread$$BOOST_THREAD_LIB_SUFFIX
 
 contains(RELEASE, 1) {

@@ -73,7 +73,7 @@ void Shutdown(void* parg)
         delete pwalletMain;
         CreateThread(ExitTimeout, NULL);
         Sleep(50);
-        printf("Bitcoin exiting\n\n");
+        printf("I0coin exiting\n\n");
         fExit = true;
 #ifndef QT_GUI
         // ensure non UI client get's exited here, but let Bitcoin-Qt reach return 0; in bitcoin.cpp
@@ -161,7 +161,7 @@ bool AppInit2(int argc, char* argv[])
     //
     // Parameters
     //
-    // If Qt is used, parameters/bitcoin.conf are parsed in qt/bitcoin.cpp's main()
+    // If Qt is used, parameters/i0coin.conf are parsed in qt/bitcoin.cpp's main()
 #if !defined(QT_GUI)
     ParseParameters(argc, argv);
     if (!boost::filesystem::is_directory(GetDataDir(false)))
@@ -175,15 +175,15 @@ bool AppInit2(int argc, char* argv[])
     if (mapArgs.count("-?") || mapArgs.count("--help"))
     {
         string strUsage = string() +
-          _("Bitcoin version") + " " + FormatFullVersion() + "\n\n" +
+          _("I0coin version") + " " + FormatFullVersion() + "\n\n" +
           _("Usage:") + "\t\t\t\t\t\t\t\t\t\t\n" +
-            "  bitcoind [options]                   \t  " + "\n" +
-            "  bitcoind [options] <command> [params]\t  " + _("Send command to -server or bitcoind") + "\n" +
-            "  bitcoind [options] help              \t\t  " + _("List commands") + "\n" +
-            "  bitcoind [options] help <command>    \t\t  " + _("Get help for a command") + "\n" +
+            "  i0coind [options]                   \t  " + "\n" +
+            "  i0coind [options] <command> [params]\t  " + _("Send command to -server or i0coind") + "\n" +
+            "  i0coind [options] help              \t\t  " + _("List commands") + "\n" +
+            "  i0coind [options] help <command>    \t\t  " + _("Get help for a command") + "\n" +
           _("Options:") + "\n" +
-            "  -conf=<file>     \t\t  " + _("Specify configuration file (default: bitcoin.conf)") + "\n" +
-            "  -pid=<file>      \t\t  " + _("Specify pid file (default: bitcoind.pid)") + "\n" +
+            "  -conf=<file>     \t\t  " + _("Specify configuration file (default: i0coin.conf)") + "\n" +
+            "  -pid=<file>      \t\t  " + _("Specify pid file (default: i0coind.pid)") + "\n" +
             "  -gen             \t\t  " + _("Generate coins") + "\n" +
             "  -gen=0           \t\t  " + _("Don't generate coins") + "\n" +
             "  -min             \t\t  " + _("Start minimized") + "\n" +
@@ -194,7 +194,7 @@ bool AppInit2(int argc, char* argv[])
             "  -timeout=<n>     \t  "   + _("Specify connection timeout (in milliseconds)") + "\n" +
             "  -proxy=<ip:port> \t  "   + _("Connect through socks4 proxy") + "\n" +
             "  -dns             \t  "   + _("Allow DNS lookups for addnode and connect") + "\n" +
-            "  -port=<port>     \t\t  " + _("Listen for connections on <port> (default: 8333 or testnet: 18333)") + "\n" +
+            "  -port=<port>     \t\t  " + _("Listen for connections on <port> (default: 7333 or testnet: 17333)") + "\n" +
             "  -maxconnections=<n>\t  " + _("Maintain at most <n> connections to peers (default: 125)") + "\n" +
             "  -addnode=<ip>    \t  "   + _("Add a node to connect to and attempt to keep the connection open") + "\n" +
             "  -connect=<ip>    \t\t  " + _("Connect only to the specified node") + "\n" +
@@ -232,7 +232,7 @@ bool AppInit2(int argc, char* argv[])
 #endif
             "  -rpcuser=<user>  \t  "   + _("Username for JSON-RPC connections") + "\n" +
             "  -rpcpassword=<pw>\t  "   + _("Password for JSON-RPC connections") + "\n" +
-            "  -rpcport=<port>  \t\t  " + _("Listen for JSON-RPC connections on <port> (default: 8332)") + "\n" +
+            "  -rpcport=<port>  \t\t  " + _("Listen for JSON-RPC connections on <port> (default: 7332)") + "\n" +
             "  -rpcallowip=<ip> \t\t  " + _("Allow JSON-RPC connections from specified IP address") + "\n" +
             "  -rpcconnect=<ip> \t  "   + _("Send commands to node running on <ip> (default: 127.0.0.1)") + "\n" +
             "  -blocknotify=<cmd> "     + _("Execute command when the best block changes (%s in cmd is replaced by block hash)") + "\n" +
@@ -293,7 +293,7 @@ bool AppInit2(int argc, char* argv[])
 
 #ifndef QT_GUI
     for (int i = 1; i < argc; i++)
-        if (!IsSwitchChar(argv[i][0]) && !(strlen(argv[i]) > 7 && strncasecmp(argv[i], "bitcoin:", 8) == 0))
+        if (!IsSwitchChar(argv[i][0]) && !(strlen(argv[i]) > 7 && strncasecmp(argv[i], "i0coin:", 8) == 0))
             fCommandLine = true;
 
     if (fCommandLine)
@@ -328,7 +328,7 @@ bool AppInit2(int argc, char* argv[])
     if (!fDebug)
         ShrinkDebugFile();
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    printf("Bitcoin version %s (%s)\n", FormatFullVersion().c_str(), CLIENT_DATE.c_str());
+    printf("I0coin version %s (%s)\n", FormatFullVersion().c_str(), CLIENT_DATE.c_str());
     printf("Default data directory %s\n", GetDefaultDataDir().string().c_str());
 
     if (GetBoolArg("-loadblockindextest"))
@@ -339,14 +339,14 @@ bool AppInit2(int argc, char* argv[])
         return false;
     }
 
-    // Make sure only a single bitcoin process is using the data directory.
+    // Make sure only a single i0coin process is using the data directory.
     boost::filesystem::path pathLockFile = GetDataDir() / ".lock";
     FILE* file = fopen(pathLockFile.string().c_str(), "a"); // empty lock file; created if it doesn't exist.
     if (file) fclose(file);
     static boost::interprocess::file_lock lock(pathLockFile.string().c_str());
     if (!lock.try_lock())
     {
-        ThreadSafeMessageBox(strprintf(_("Cannot obtain a lock on data directory %s.  Bitcoin is probably already running."), GetDataDir().string().c_str()), _("Bitcoin"), wxOK|wxMODAL);
+        ThreadSafeMessageBox(strprintf(_("Cannot obtain a lock on data directory %s.  I0coin is probably already running."), GetDataDir().string().c_str()), _("I0coin"), wxOK|wxMODAL);
         return false;
     }
 
@@ -355,7 +355,7 @@ bool AppInit2(int argc, char* argv[])
     // Load data files
     //
     if (fDaemon)
-        fprintf(stdout, "bitcoin server starting\n");
+        fprintf(stdout, "i0coin server starting\n");
     int64 nStart;
 
     InitMessage(_("Loading addresses..."));
@@ -392,12 +392,12 @@ bool AppInit2(int argc, char* argv[])
         if (nLoadWalletRet == DB_CORRUPT)
             strErrors << _("Error loading wallet.dat: Wallet corrupted") << "\n";
         else if (nLoadWalletRet == DB_TOO_NEW)
-            strErrors << _("Error loading wallet.dat: Wallet requires newer version of Bitcoin") << "\n";
+            strErrors << _("Error loading wallet.dat: Wallet requires newer version of I0coin") << "\n";
         else if (nLoadWalletRet == DB_NEED_REWRITE)
         {
-            strErrors << _("Wallet needed to be rewritten: restart Bitcoin to complete") << "\n";
+            strErrors << _("Wallet needed to be rewritten: restart I0coin to complete") << "\n";
             printf("%s", strErrors.str().c_str());
-            ThreadSafeMessageBox(strErrors.str(), _("Bitcoin"), wxOK | wxICON_ERROR | wxMODAL);
+            ThreadSafeMessageBox(strErrors.str(), _("I0coin"), wxOK | wxICON_ERROR | wxMODAL);
             return false;
         }
         else
@@ -469,7 +469,7 @@ bool AppInit2(int argc, char* argv[])
 
     if (!strErrors.str().empty())
     {
-        ThreadSafeMessageBox(strErrors.str(), _("Bitcoin"), wxOK | wxICON_ERROR | wxMODAL);
+        ThreadSafeMessageBox(strErrors.str(), _("I0coin"), wxOK | wxICON_ERROR | wxMODAL);
         return false;
     }
 
@@ -525,7 +525,7 @@ bool AppInit2(int argc, char* argv[])
         addrProxy = CService(mapArgs["-proxy"], 9050);
         if (!addrProxy.IsValid())
         {
-            ThreadSafeMessageBox(_("Invalid -proxy address"), _("Bitcoin"), wxOK | wxMODAL);
+            ThreadSafeMessageBox(_("Invalid -proxy address"), _("I0coin"), wxOK | wxMODAL);
             return false;
         }
     }
@@ -556,7 +556,7 @@ bool AppInit2(int argc, char* argv[])
         std::string strError;
         if (!BindListenPort(strError))
         {
-            ThreadSafeMessageBox(strError, _("Bitcoin"), wxOK | wxMODAL);
+            ThreadSafeMessageBox(strError, _("I0coin"), wxOK | wxMODAL);
             return false;
         }
     }
@@ -576,11 +576,11 @@ bool AppInit2(int argc, char* argv[])
     {
         if (!ParseMoney(mapArgs["-paytxfee"], nTransactionFee))
         {
-            ThreadSafeMessageBox(_("Invalid amount for -paytxfee=<amount>"), _("Bitcoin"), wxOK | wxMODAL);
+            ThreadSafeMessageBox(_("Invalid amount for -paytxfee=<amount>"), _("I0coin"), wxOK | wxMODAL);
             return false;
         }
         if (nTransactionFee > 0.25 * COIN)
-            ThreadSafeMessageBox(_("Warning: -paytxfee is set very high.  This is the transaction fee you will pay if you send a transaction."), _("Bitcoin"), wxOK | wxICON_EXCLAMATION | wxMODAL);
+            ThreadSafeMessageBox(_("Warning: -paytxfee is set very high.  This is the transaction fee you will pay if you send a transaction."), _("I0coin"), wxOK | wxICON_EXCLAMATION | wxMODAL);
     }
 
     //
@@ -592,7 +592,7 @@ bool AppInit2(int argc, char* argv[])
     RandAddSeedPerfmon();
 
     if (!CreateThread(StartNode, NULL))
-        ThreadSafeMessageBox(_("Error: CreateThread(StartNode) failed"), _("Bitcoin"), wxOK | wxMODAL);
+        ThreadSafeMessageBox(_("Error: CreateThread(StartNode) failed"), _("I0coin"), wxOK | wxMODAL);
 
     if (fServer)
         CreateThread(ThreadRPCServer, NULL);
